@@ -8,3 +8,12 @@ body {
   font-family: "Exo", sans-serif;
   font-family: "Inter", sans-serif;
 }
+
+li {
+  color: white;
+}
+
+a.active {
+  color: coral;
+  transition: 1s;
+}

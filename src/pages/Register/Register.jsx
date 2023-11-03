@@ -52,7 +52,9 @@ const Register = () => {
           .then(() => {
             setUser({ ...userInfo, photoURL: photoUrl, displayName: name });
           })
-          .catch((error) => setError(error.message));
+          .catch((error) => {
+            setError(error.message);
+          });
 
         // reset form
         form.reset();

@@ -1,10 +1,14 @@
-import { Dropdown } from "flowbite-react";
 import { Link, NavLink } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import Swal from "sweetalert2";
+import { AiOutlineMenuUnfold, AiFillCloseCircle } from "react-icons/ai";
+import { useState } from "react";
+import { FiLogOut } from "react-icons/fi";
+import { BiSolidUserAccount } from "react-icons/bi";
 
 const Navbar = () => {
   const { user, logOut } = useAuthContext();
+  const [isActive, setIsActive] = useState(false);
 
   const handleSignOut = () => {
     logOut()
@@ -26,7 +30,7 @@ const Navbar = () => {
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/bookings"}>MyCart</NavLink>
+        <NavLink to={"/myCart"}>MyCart</NavLink>
       </li>
       <li>
         <NavLink to={"/login"}>Login</NavLink>
@@ -39,39 +43,82 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900 hidden">
-        <div className="w-full flex flex-wrap items-center justify-between mx-auto p-4">
+      <nav className="bg-white border-gray-200 dark:bg-gray-900 ">
+        <div className="w-full flex flex-wrap items-center justify-between mx-auto p-2">
+          {/* menubar */}
+          <div
+            onClick={() => setIsActive(!isActive)}
+            className={`dropdown md:hidden `}
+          >
+            <label tabIndex={0}>
+              {isActive ? (
+                <AiOutlineMenuUnfold className="text-3xl text-white " />
+              ) : (
+                <AiFillCloseCircle className="text-3xl bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600" />
+              )}
+            </label>
+            <ul
+              tabIndex={0}
+              className={`menu menu-sm   dropdown-content  mt-3 z-[1] pt-2 w-52`}
+            >
+              <div
+                className={
+                  isActive
+                    ? "hidden"
+                    : "block bg-gradient-to-r from-gray-700 via-gray-900 p-3 to-black  rounded-lg"
+                }
+              >
+                {navLinks}
+              </div>
+            </ul>
+          </div>
+
           <Link to={"/"} className="flex items-center">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            {/* <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white ">
               ShopHouse
-            </span>
+            </span> */}
+            <h1 className="font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800">
+              ShopHouse
+            </h1>
           </Link>
           <div className="flex items-center md:order-2">
             <div>
               {user ? (
-                <Dropdown
-                  arrowIcon={false}
-                  inline
-                  label={
-                    <div className="avatar">
-                      <div className="w-9 mr-4 rounded-full ring  ring-offset-base-100 ring-offset-2">
-                        <img src={user?.photoURL} />
-                      </div>
+                <details className="dropdown dropdown-end">
+                  <summary
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full">
+                      <img src={user?.photoURL} />
                     </div>
-                  }
-                >
-                  <Dropdown.Header>
-                    <li className="block text-sm font-bold">
-                      {user?.displayName}
+                  </summary>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 rounded  shadow-md  bg-gradient-to-r from-gray-700 via-gray-900 to-black w-60"
+                  >
+                    <li className="font-bold flex justify-center items-center">
+                      <div>
+                        <img
+                          className="rounded-full h-28 w-28"
+                          src={user?.photoURL}
+                        />
+                      </div>
                     </li>
-                  </Dropdown.Header>
+                    <li className="font-bold">
+                      <a className=" hover:bg-gray-400  hover:rounded">
+                        <BiSolidUserAccount className="text-lg" />
+                        {user?.displayName}
+                      </a>
+                    </li>
 
-                  <Dropdown.Item>
-                    <li className="hover:text-blue-600" onClick={handleSignOut}>
-                      Sign out
+                    <li onClick={handleSignOut}>
+                      <a className=" text-[0.97rem]  text-blue-500 font-bold hover:bg-gray-400 hover:rounded">
+                        <FiLogOut className="text-lg" /> Logout
+                      </a>
                     </li>
-                  </Dropdown.Item>
-                </Dropdown>
+                  </ul>
+                </details>
               ) : (
                 <Link
                   to={"/login"}
