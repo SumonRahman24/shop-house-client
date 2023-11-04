@@ -8,7 +8,7 @@ import { BiSolidUserAccount } from "react-icons/bi";
 
 const Navbar = () => {
   const { user, logOut } = useAuthContext();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
 
   const handleSignOut = () => {
     logOut()
@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900 ">
+      <nav className=" container m-auto">
         <div className="w-full flex flex-wrap items-center justify-between mx-auto p-2">
           {/* menubar */}
           <div
@@ -52,20 +52,20 @@ const Navbar = () => {
           >
             <label tabIndex={0}>
               {isActive ? (
-                <AiOutlineMenuUnfold className="text-3xl text-white " />
+                <AiOutlineMenuUnfold className="text-3xl " />
               ) : (
-                <AiFillCloseCircle className="text-3xl bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600" />
+                <AiFillCloseCircle className="text-3xl 0" />
               )}
             </label>
             <ul
               tabIndex={0}
-              className={`menu menu-sm   dropdown-content  mt-3 z-[1] pt-2 w-52`}
+              className={`menu menu-sm  text-white  dropdown-content  mt-3 z-[1] pt-2 w-52`}
             >
               <div
                 className={
                   isActive
                     ? "hidden"
-                    : "block bg-gradient-to-r from-gray-700 via-gray-900 p-3 to-black  rounded-lg"
+                    : "block bg-gradient-to-r from-gray-700 via-gray-900 p-3 to-black  rounded-lg "
                 }
               >
                 {navLinks}
@@ -74,9 +74,6 @@ const Navbar = () => {
           </div>
 
           <Link to={"/"} className="flex items-center">
-            {/* <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white ">
-              ShopHouse
-            </span> */}
             <h1 className="font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800">
               ShopHouse
             </h1>
@@ -100,14 +97,14 @@ const Navbar = () => {
                     <li className="font-bold flex justify-center items-center">
                       <div>
                         <img
-                          className="rounded-full h-28 w-28"
+                          className="rounded-full h-16 w-16"
                           src={user?.photoURL}
                         />
                       </div>
                     </li>
                     <li className="font-bold">
-                      <a className=" hover:bg-gray-400  hover:rounded">
-                        <BiSolidUserAccount className="text-lg" />
+                      <a className=" hover:bg-gray-400 text-gray-300  hover:rounded">
+                        <BiSolidUserAccount className="text-lg " />
                         {user?.displayName}
                       </a>
                     </li>
@@ -134,7 +131,7 @@ const Navbar = () => {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-user"
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0   dark:border-gray-700">
               {navLinks}
             </ul>
           </div>

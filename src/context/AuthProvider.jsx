@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "./../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -51,9 +52,32 @@ const AuthProvider = ({ children }) => {
   // onAuthStateChanged
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      //getEmail
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
+
       setUser(currentUser);
       setLoading(false);
+
+      // jwt auth
+      if (currentUser) {
+        axios
+          .post("https://shop-house-server.vercel.app/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => console.log("jwt data", res.data));
+      } else {
+        axios
+          .post("https://shop-house-server.vercel.app/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => console.log("jwt cookie clean data", res.data));
+      }
     });
+
+    if (user) {
+      setLoading(false);
+    }
 
     return () => {
       return unSubscribe();

@@ -10,7 +10,7 @@ body {
 }
 
 li {
-  color: white;
+  font-weight: 600;
 }
 
 a.active {
