@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   const { _id, brand, product_name, price } = product || {};
   return (
     <>
-      <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+      <div className="w-72  bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <div href="#">
           <img
             src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"

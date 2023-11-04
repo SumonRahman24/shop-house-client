@@ -1,8 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuthContext from "../../hooks/useAuthContext";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,6 +13,11 @@ const Login = () => {
   const { signIn, signInWithGoogle } = useAuthContext();
   const location = useLocation();
   const navigte = useNavigate();
+
+  // aos animation
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   // handle submit
   const handleLogin = (e) => {
@@ -65,8 +73,11 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="py-8">
+    <>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+      <div data-aos="fade-up" className="py-8">
         <div className="flex bg-white rounded-lg border-2 shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
           <div className="hidden lg:block lg:w-1/2 bg-cover bg-[url('/images/login-picture.jpg')]"></div>
           <div className="w-full p-8 lg:w-1/2">
@@ -181,7 +192,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "./../../hooks/useAxiosSecure";
 import CartTable from "./CartTable";
+import { Helmet } from "react-helmet";
 
 const MyCart = () => {
   const axiosSecure = useAxiosSecure();
@@ -87,6 +88,9 @@ const MyCart = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>MyCart</title>
+      </Helmet>
       <CartTable
         carts={carts}
         handleDelete={handleDelete}

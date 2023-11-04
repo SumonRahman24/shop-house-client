@@ -3,6 +3,7 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuthContext from "../../hooks/useAuthContext";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -90,7 +91,10 @@ const Register = () => {
 
   return (
     <div>
-      <div className="py-8">
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
+      <div data-aos="fade-up" className="py-8">
         <div className="flex bg-white rounded-lg shadow-xl border-2 overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
           <div className="hidden lg:block lg:w-1/2 bg-cover bg-[url('/images/login-picture.jpg')]"></div>
           <div className="w-full p-8 lg:w-1/2">

@@ -11,7 +11,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const Slider = () => {
   return (
-    <div className="hidden">
+    <div className="mt-10 container m-auto ">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -24,17 +24,17 @@ const Slider = () => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper rounded-md"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide>
+          <img src="/slider/slider1.jpg" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/slider/slider2.jpg" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/slider/slider3.jpg" alt="" />
+        </SwiperSlide>
       </Swiper>
     </div>
   );

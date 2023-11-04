@@ -7,9 +7,9 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="absolute bg-white bg-opacity-60 z-10  w-full flex justify-center mt-40">
-        <div className="flex items-center">
-          <span className="text-3xl mr-4">Loading</span>
+      <div className="absolute bg-white dark:text-slate-300 dark:bg-slate-950 h-[100vh] bg-opacity-60 z-10  w-full flex justify-center">
+        <div className="flex  pt-20">
+          <span className="text-3xl dark:text-slate-200 mr-4">Loading</span>
           <svg
             className="animate-spin h-8 w-8 text-gray-800"
             xmlns="http://www.w3.org/2000/svg"
